@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'chatBot/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'chatBot/css/tailwindcss-colors.css' %}">
+    <title>Chat</title>
+</head>
+<body>
+    
+    <!-- start: Chat -->
+    <section class="chat-section">
+        <div class="chat-container">
+            <!-- start: Sidebar -->
+            <aside class="chat-sidebar">
+                <a href="#" class="chat-sidebar-logo">
+                    <i class="ri-chat-1-fill"></i>
+                </a>
+                <ul class="chat-sidebar-menu">
+                    <li class="active"><a href="#" data-conversation="#conversation-1" data-title="Chats"><i class="ri-chat-3-line"></i></a></li>
+                    <li><a href="{%url 'home' %}" data-title="Home"><i class="ri-home-line"></i></a></li>
+                    <li><a href="#" data-title="Documents"><i class="ri-folder-line"></i></a></li>
+                    <li><a href="#" data-title="Settings"><i class="ri-settings-line"></i></a></li>
+                    <li class="chat-sidebar-profile">
+                        <button type="button" class="chat-sidebar-profile-toggle">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
+                        </button>
+                        <ul class="chat-sidebar-profile-dropdown">
+                            {% if request.user.is_authenticated %}
+                            <li><a href="#"><i class="ri-user-line"></i> Profile</a></li>
+                            <li><a href=""><i class="ri-logout-box-line"></i> Logout</a></li>
+                            {% endif %} 
+                        </ul>
+                        
+                    </li>
+                </ul>
+            </aside>
+            <!-- end: Sidebar -->
+            <!-- start: Content -->
+            <div class="chat-content">
+                <!-- start: Content side -->
+                 <!--
+                <div class="content-sidebar">
+                    <div class="content-sidebar-title">Chats</div>
+                    <form action="" class="content-sidebar-form">
+                        <input type="search" class="content-sidebar-input" placeholder="Search...">
+                        <button type="submit" class="content-sidebar-submit"><i class="ri-search-line"></i></button>
+                    </form>
+                    
+                    <div class="content-messages">
+                        <ul class="content-messages-list">
+                            <li class="content-message-title"><span>Recently</span></li>
+                            <li>
+                                <a href="#" data-conversation="#conversation-1">
+                                    <img class="content-message-image" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
+                                    <span class="content-message-info">
+                                        <span class="content-message-name">Someone</span>
+                                        <span class="content-message-text">Lorem ipsum dolor sit amet consectetur.</span>
+                                    </span>
+                                    <span class="content-message-more">
+                                        <span class="content-message-unread">5</span>
+                                        <span class="content-message-time">12:30</span>
+                                    </span>
+                                </a>
+                            </li>
+
+                           
+                           
+                            
+                        </ul>
+                        
+                    </div>
+                </div>-->
+                <!-- end: Content side -->
+                <!-- start: Conversation -->
+                <div class="conversation conversationf-default active">
+                    <i class="ri-chat-3-line"></i>
+                    <p>Select chat and view conversation!</p>
+                </div>
+                <div class="conversation" id="conversation-1">
+                    <div class="conversation-top">
+                        <button type="button" class="conversation-back"><i class="ri-arrow-left-line"></i></button>
+                        <div class="conversation-user">
+                            <img class="conversation-user-image" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="">
+                            <div>
+                                <div class="conversation-user-name">Someone</div>
+                               
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="conversation-main">
+                        
+                        <ul class="conversation-wrapper">
+                            
+                           {% for chat in chat_history %}
+                            <!--User's Message -->
+                            <li class="conversation-item me">
+                                <div class="conversation-item-side">
+                                    <img class="conversation-item-image" src="https://example.com/user-avatar.jpg" alt="User Avatar">
+                                </div>
+                                <div class="conversation-item-content">
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>{{ chat.message }}</p>
+                                                <div class="conversation-item-time">{{ chat.timestamp|date:"H:i" }}</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li>
+                                                        <a href="{% url 'delete_message' chat.id %}"><i class="ri-delete-bin-line"></i> Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Bot's Response -->
+                            <li class="conversation-item">
+                                <div class="conversation-item-side">
+                                    <img class="conversation-item-image" src="https://example.com/bot-avatar.jpg" alt="Bot Avatar">
+                                </div>
+                                <div class="conversation-item-content">
+                                    <div class="conversation-item-wrapper">
+                                        <div class="conversation-item-box">
+                                            <div class="conversation-item-text">
+                                                <p>{{ chat.response }}</p>
+                                                <div class="conversation-item-time">{{ chat.timestamp|date:"H:i" }}</div>
+                                            </div>
+                                            <div class="conversation-item-dropdown">
+                                                <button type="button" class="conversation-item-dropdown-toggle"><i class="ri-more-2-line"></i></button>
+                                                <ul class="conversation-item-dropdown-list">
+                                                    <li>
+                                                        <a href="{% url 'delete_message' chat.id %}"><i class="ri-delete-bin-line"></i> Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!-- Chat Input Section -->
+                    </div>
+                    <!-- <div class="conversation-form"> -->
+                        <form class="conversation-form" method="POST" action="#">
+                            {% csrf_token %}
+                            
+                            <!-- Emoji Button (optional) -->
+                            <button type="button" class="conversation-form-button"><i class="ri-emotion-line"></i></button>
+                            
+                            <div class="conversation-form-group">
+                                <!-- Textarea for user message -->
+                                <textarea class="conversation-form-input" name="message" rows="1" placeholder="Type here..." required></textarea>
+                            </div>
+                        
+                            <!-- Send Button -->
+                            <button type="submit" class="conversation-form-button conversation-form-submit">
+                                <i class="ri-send-plane-2-line"></i>
+                            </button>
+                        </form>
+                     <!-- </div> -->
+                    </div>
+                
+                <!-- end: Conversation -->
+            </div>
+            <!-- end: Content -->
+        </div>
+    </section>
+    <!-- end: Chat -->
+    
+    <script src="{% static 'chatBot/js/script.js' %}"></script>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Automatically show the first conversation
+        const defaultChat = document.querySelector('#conversation-1');
+        const defaultSidebar = document.querySelector('.chat-sidebar-menu li.active a');
+
+        if (defaultChat) {
+            defaultChat.classList.add('active');
+        }
+
+        if (defaultSidebar) {
+            defaultSidebar.click();
+        }
+    });
+</script>
+</html>

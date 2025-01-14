@@ -1,0 +1,374 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="keywords" content="Site keywords here">
+		<meta name="description" content="">
+		<meta name='copyright' content=''>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!-- Title -->
+        <title>Maternova</title>
+		
+		<!-- Favicon -->
+        <link rel="icon" href="{% static 'app/images/favicon.png' %}">
+		
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+		<!-- Nice Select CSS -->
+		<link rel="stylesheet" href="{% static 'app/css/nice-select.css' %}">
+		<!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/font-awesome.min.css' %}">
+		<!-- icofont CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/icofont.css' %}">
+		<!-- Slicknav -->
+		<link rel="stylesheet" href="{% static 'app/css/slicknav.min.css' %}">
+		<!-- Owl Carousel CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/owl-carousel.css' %}">
+		<!-- Datepicker CSS -->
+		<link rel="stylesheet" href="{% static 'app/css/datepicker.css' %}">
+		<!-- Animate CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/animate.min.css' %}">
+		<!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/magnific-popup.css' %}">
+		
+		<!-- Medipro CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'app/css/responsive.css' %}">
+		
+    </head>
+    <body>
+	
+
+		<style>
+			.features.section {
+				padding: 60px 0;
+			}
+		
+			.single-feature {
+				background: #f8f9fa;
+				padding: 30px;
+				border-radius: 8px;
+				margin-bottom: 20px;
+				transition: all 0.3s ease;
+			}
+		
+			.single-feature:hover {
+				background: #e9ecef;
+				transform: translateY(-5px);
+			}
+		
+			.feature-icon {
+				font-size: 70px; /* Increased icon size */
+				color: #007bff;
+				margin-bottom: 15px;
+			}
+		
+			.single-feature h3 {
+				font-size: 20px;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+		
+			.single-feature p {
+				font-size: 14px;
+				color: #6c757d;
+			}
+		</style>
+		<!-- Preloader -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader-outter"></div>
+                <div class="loader-inner"></div>
+
+                <div class="indicator"> 
+                    <svg width="16px" height="12px">
+                        <polyline id="back" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                        <polyline id="front" points="1 6 4 6 6 11 10 1 12 6 15 6"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- End Preloader -->
+		
+		<!-- Get Pro Button -->
+		
+	
+		<!-- Header Area -->
+		<header class="header" >
+			<!-- Header Inner -->
+			<div class="header-inner">
+				<div class="container">
+					<div class="inner">
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-12">
+								<!-- Start Logo -->
+								<div >
+									<a href="index.html"><img src="{% static 'app/images/logo22.png' %} " alt="#" ></a>
+								</div>
+								<!-- End Logo -->
+								<!-- Mobile Nav -->
+								<div class="mobile-nav"></div>
+								<!-- End Mobile Nav -->
+							</div>
+							<div class="col-lg-7 col-md-9 col-12">
+								<!-- Main Menu -->
+								<div class="main-menu">
+									<nav class="navigation">
+										<ul class="nav menu">
+											<li class="active"><a href="{%url 'home' %}">Home <i class="icofont-rounded-down"></i></a>
+											</li>
+											<li><a href="#">About us </a></li>
+											<li><a href="{%url 'chatBot' %}">Chatbot </a></li>
+											<li><a href="{%url 'risk' %}">Risks  <i class="icofont-rounded-down"></i></a>
+										</ul>
+									</nav>
+								</div>
+								<!--/ End Main Menu -->
+							</div>
+							<div class="col-lg-2 col-12">
+								<!-- Show Login and Inscription buttons only if the user is not authenticated -->
+								{% if not request.user.is_authenticated %}
+								<div class="get-quote" style="display: flex; justify-content: start;">
+									<a href="{% url 'connexion' %}" class="btn" style="margin-right: 10px;">Login In</a>
+									<a href="{% url 'inscription' %}" class="btn" style="background-color: black; color: white;">Inscription</a>
+								</div>
+								{% else %}
+								<!-- You can add a logout button or user info here if needed -->
+								<div class="get-quote">
+									<a href="{% url 'logout' %}" class="btn" style="background-color: red; color: white;">Logout</a>
+								</div>
+								{% endif %}
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/ End Header Inner -->
+		</header>
+		<!-- End Header Area -->
+		
+		<!-- Slider Area -->
+		<section class="slider">
+			<div class="hero-slider">
+				<!-- Start Single Slider -->
+				<div class="single-slider" style="background-image:url('{% static 'app/images/maternity8.jpg' %}')">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="text">
+									<h1 style="color: #ffffff;">Caring for <span>Mom</span> and <span>Baby</span> Every Step of the Way</h1>
+                            <p style="color: #ffffff;">
+                                Your journey to motherhood deserves personalized care. Explore expert advice on nutrition, fetal health, and emotional support, tailored just for you.
+                            </p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Single Slider -->
+				<!-- Start Single Slider -->
+				<div class="single-slider" style="background-image:url('{% static 'app/images/maternity7.jpeg' %}')">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="text">
+									<h1>Nutrition, Health & <span>Wellness</span> for You and Your Baby</h1>
+                            <p>
+                                Discover vital tips on maintaining a balanced diet, managing stress, and ensuring a healthy pregnancy for you and your baby.
+                            </p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Start End Slider -->
+				<!-- Start Single Slider -->
+				<div class="single-slider" style="background-image:url('{% static 'app/images/matenity1.jpeg' %}')">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="text">
+									<h1>Empowering <span>Pregnancy</span> with Trusted Support</h1>
+                            <p>
+                                Let our chatbot guide you through essential health tips, emotional care, and answers to your pregnancy-related questions.
+                            </p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Single Slider -->
+			</div>
+		</section>
+		<!--/ End Slider Area -->
+		
+		<!-- Start Schedule Area -->
+		<section class="schedule">
+			<div class="container">
+				<div class="schedule-inner">
+					<div class="row d-flex justify-content-center">
+						<div class="col-lg-4 col-md-6 col-12 ">
+							<!-- single-schedule -->
+							<div class="single-schedule first">
+								<div class="inner">
+									<div class="icon">
+										<i class="bi bi-chat-dots"></i>
+									</div>
+									<div class="single-content">
+										<span>Your Personal Assistant</span>
+										<h4>Chat with Our Expert Bot</h4>
+										<p>Get expert advice on nutrition, fetal health, and emotional well-being, tailored just for you.</p>
+										<a href="#">START CHAT<i class="fa fa-long-arrow-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-12">
+							<!-- single-schedule -->
+							<div class="single-schedule middle">
+								<div class="inner">
+									<div class="icon">
+										<i class="bi bi-heart-pulse"></i>
+									</div>
+									<div class="single-content">
+										<span>Health Assessment</span>
+										<h4>Check Your Health Risk</h4>
+										<p>Enter your health measurements such as age, heart rate, and more to check if you're at risk.</p>
+										<a href="#">START ASSESSMENT<i class="fa fa-long-arrow-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/End Start schedule Area -->
+
+		<!-- Start Feautes -->
+		<section class="features section">
+			<div class="container">
+				<!-- Section Title -->
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>We Are Always Ready to Help You & Your Family</h2>
+							<img src="{% static 'app/images/section-img.png' %}" alt="Decorative Image">
+							<p>Providing expert advice on maternal health, nutrition, and overall well-being for mothers and their families.</p>
+						</div>
+					</div>
+				</div>
+				<!-- Features Section -->
+				<div class="row text-center">
+					<div class="col-lg-4 col-12">
+						<!-- Single Feature -->
+						<div class="single-feature">
+							<div class="feature-icon">
+								<i class="bi bi-chat-dots"></i> <!-- Chatbot Icon -->
+							</div>
+							<h3>Intelligent Chatbot</h3>
+							<p>Get instant advice on maternal health, nutrition, and fetal development through our AI-powered assistant.</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-12">
+						<!-- Single Feature -->
+						<div class="single-feature">
+							<div class="feature-icon">
+								<i class="bi bi-heart-pulse"></i> <!-- Health Monitoring Icon -->
+							</div>
+							<h3>Health Monitoring</h3>
+							<p>Analyze health metrics like heart rate and age to detect potential risks for mothers and babies.</p>
+						</div>
+					</div>
+					<div class="col-lg-4 col-12">
+						<!-- Single Feature -->
+						<div class="single-feature">
+							<div class="feature-icon">
+								<i class="bi bi-people"></i> <!-- Family Support Icon -->
+							</div>
+							<h3>Family Support</h3>
+							<p>Guidance and resources for families to ensure a healthy and happy pregnancy journey.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Footer Area -->
+
+			<!-- Copyright -->
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-12">
+							<div class="copyright-content">
+								<p>© Copyright 2018  |  All Rights Reserved by <a href="https://www.wpthemesgrid.com" target="_blank">wpthemesgrid.com</a> </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/ End Copyright -->
+		</footer>
+		<!--/ End Footer Area -->
+		
+		<!-- jquery Min JS -->
+        <script src="{% static 'app/js/jquery.min.js' %}"></script>
+		<!-- jquery Migrate JS -->
+		<script src="{% static 'app/js/jquery-migrate-3.0.0.js' %}"></script>
+		<!-- jquery Ui JS -->
+		<script src="{% static 'app/js/jquery-ui.min.js' %}"></script>
+		<!-- Easing JS -->
+        <script src="{% static 'app/js/easing.js' %}"></script>
+		<!-- Color JS -->
+		<script src="{% static 'app/js/colors.js' %}"></script>
+		<!-- Popper JS -->
+		<script src="{% static 'app/js/popper.min.js' %}"></script>
+		<!-- Bootstrap Datepicker JS -->
+		<script src="{% static 'app/js/bootstrap-datepicker.js' %}"></script>
+		<!-- Jquery Nav JS -->
+        <script src="{% static 'app/js/jquery.nav.js' %}"></script>
+		<!-- Slicknav JS -->
+		<script src="{% static 'app/js/slicknav.min.js' %}"></script>
+		<!-- ScrollUp JS -->
+        <script src="{js/jquery.scrollUp.min.js' %}"></script>
+		<!-- Niceselect JS -->
+		<script src="{% static 'app/js/niceselect.js' %}"></script>
+		<!-- Tilt Jquery JS -->
+		<script src="{% static 'app/js/tilt.jquery.min.js' %}"></script>
+		<!-- Owl Carousel JS -->
+        <script src="{% static 'app/js/owl-carousel.js' %}"></script>
+		<!-- counterup JS -->
+		<script src="{% static 'app/js/jquery.counterup.min.js' %}"></script>
+		<!-- Steller JS -->
+		<script src="{% static 'app/js/steller.js' %}"></script>
+		<!-- Wow JS -->
+		<script src="{% static 'app/js/wow.min.js' %}"></script>
+		<!-- Magnific Popup JS -->
+		<script src="{% static 'app/js/jquery.magnific-popup.min.js' %}"></script>
+		<!-- Counter Up CDN JS -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+		<!-- Main JS -->
+		<script src="{% static 'app/js/main.js' %}"></script>
+    </body>
+</html>
